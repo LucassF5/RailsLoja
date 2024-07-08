@@ -1,0 +1,46 @@
+<html>
+    <body>
+        <h1>Produtos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Preço</td>
+                    <td>Quantidade</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% @produtos.each do |p| %>
+                <tr>
+                    <td><%= p.nome %></td>
+                    <td><%= p.descricao %></td>
+                    <td><%= p.preco %></td>
+                    <td><%= p.quantidade %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <h1>Produtos mais baratos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Preço</td>
+                    <td>Quantidade</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% @produto_com_desconto.each do |p| %>
+                <tr>
+                    <td><%= p.nome %></td>
+                    <td><%= p.descricao %></td>
+                    <td><%= p.preco %></td>
+                    <td><%= p.quantidade %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </body>
+</html>
