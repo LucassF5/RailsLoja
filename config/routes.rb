@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   post "produtos", to:"produtos#create" # Rota para criar um novo produto
   # Requisição POST => para a rota produtos => para o controller produtos => para o método create
+
+  delete "produtos/:id", to:"produtos#destroy", as: :produto
+  # Requisição DELETE => para a rota produtos/:id => para o controller produtos => para o método destroy
 end

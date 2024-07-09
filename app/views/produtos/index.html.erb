@@ -8,15 +8,17 @@
             <td>Descrição</td>
             <td>Preço</td>
             <td>Quantidade</td>
+            <td colspan=1></td>
         </tr>
     </thead>
     <tbody>
-        <% @produtos.each do |p| %>
+        <% @produtos.each do |produto| %>
         <tr>
-            <td><%= p.nome %></td>
-            <td><%= p.descricao %></td>
-            <td><%= p.preco %></td>
-            <td><%= p.quantidade %></td>
+            <td><%= produto.nome %></td>
+            <td><%= produto.descricao %></td>
+            <td><%= produto.preco %></td>
+            <td><%= produto.quantidade %></td>
+            <td><%= link_to "Remover", produto, method: :delete %></td>
         </tr>
         <% end %>
     </tbody>
@@ -34,12 +36,12 @@
         </tr>
     </thead>
     <tbody>
-        <% @produto_com_desconto.each do |p| %>
+        <% @produto_com_desconto.each do |produto| %>
         <tr>
-            <td><%= p.nome %></td>
-            <td><%= p.descricao %></td>
-            <td><%= p.preco %></td>
-            <td><%= p.quantidade %></td>
+            <td><%= produto.nome %></td>
+            <td><%= produto.descricao %></td>
+            <td><%= produto.preco %></td>
+            <td><%= produto.quantidade %></td>
         </tr>
         <% end %>
     </tbody>
