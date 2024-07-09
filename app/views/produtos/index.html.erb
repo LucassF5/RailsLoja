@@ -1,53 +1,47 @@
-<html>
-<%= nav_bar brand: "RailsLoja", brand_link: root_url%>
-    <div class="container">
-        <body>
-            <div class="alert alert-info" role="alert">
-                <h2 class="alert-heading">Produtos</h2>
-            </div>
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Descrição</td>
-                        <td>Preço</td>
-                        <td>Quantidade</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @produtos.each do |p| %>
-                    <tr>
-                        <td><%= p.nome %></td>
-                        <td><%= p.descricao %></td>
-                        <td><%= p.preco %></td>
-                        <td><%= p.quantidade %></td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
-            <div class="alert alert-success" role="alert">
-                <h2 class="alert-heading">Produtos mais baratos</h2>
-            </div>
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Descrição</td>
-                        <td>Preço</td>
-                        <td>Quantidade</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @produto_com_desconto.each do |p| %>
-                    <tr>
-                        <td><%= p.nome %></td>
-                        <td><%= p.descricao %></td>
-                        <td><%= p.preco %></td>
-                        <td><%= p.quantidade %></td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </body>
-    </div>
-</html>
+<div class="alert alert-info" role="alert">
+    <h2 class="alert-heading">Produtos</h2>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>Nome</td>
+            <td>Descrição</td>
+            <td>Preço</td>
+            <td>Quantidade</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @produtos.each do |p| %>
+        <tr>
+            <td><%= p.nome %></td>
+            <td><%= p.descricao %></td>
+            <td><%= p.preco %></td>
+            <td><%= p.quantidade %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<div class="alert alert-success" role="alert">
+    <h2 class="alert-heading">Produtos mais baratos</h2>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>Nome</td>
+            <td>Descrição</td>
+            <td>Preço</td>
+            <td>Quantidade</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @produto_com_desconto.each do |p| %>
+        <tr>
+            <td><%= p.nome %></td>
+            <td><%= p.descricao %></td>
+            <td><%= p.preco %></td>
+            <td><%= p.quantidade %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<button type="button" class="btn btn-secondary"><%= link_to "Criar produto", produtos_new_path %></button>
