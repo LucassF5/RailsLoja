@@ -4,12 +4,21 @@ class ProdutosController < ApplicationController
     @produto_com_desconto = Produto.order(:preco).limit 2
   end
 
+  def new
+    @produto = Produto.new
+  end
+
   def create
     produto_params = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade)
     # Estabelece os parâmetros que o método create irá receber
-    Produto.create produto_params
+    @produto = Produto.new produto_params
     # Cria um novo produto com os parâmetros recebidos
-    redirect_to root_path
+    if @produto.save
+      flash[:notice] = "Produto salvo com sucesso" # Adiciona uma mensagem de sucesso
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
     # Redireciona para a página raiz
 
     # Na ordem, o método create faz:
