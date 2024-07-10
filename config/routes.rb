@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 
   # delete "produtos/:id", to:"produtos#destroy", as: :produto
   # Requisição DELETE => para a rota produtos/:id => para o controller produtos => para o método destroy
-
+  get "produtos/busca", to: "produtos#busca", as: :busca_produto
   resources :produtos, only: [:new, :create, :destroy]
 end
