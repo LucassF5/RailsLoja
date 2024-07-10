@@ -28,4 +28,9 @@ class ProdutosController < ApplicationController
     # 2. Deleta o produto com esse id
     # 3. Redireciona para a página raiz
   end
+
+  def busca
+    @nome = params[:id]
+    @produtos = Produto.where "nome like ?", "%#{@nome}%"
+  end
 end
