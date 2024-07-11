@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :departamentos
   root to: "produtos#index" # Rota raiz, renderiza a página index do controller produtos
   # get "produtos/new", to:"produtos#new" # Buscar a página de criação de um novo produto
   # Requisição GET => para a rota produtos => para o controller produtos => para o método/view index
