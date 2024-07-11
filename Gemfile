@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.2.4"
 
+gem 'rails-i18n'
+# Gem for using Rails i18n
+
 gem 'jquery-rails'
 # Gem for using jQuery with Rails
 
