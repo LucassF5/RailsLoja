@@ -10,7 +10,7 @@ class ProdutosController < ApplicationController
   end
 
   def create
-    produto_params = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade)
+    produto_params = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade, :departamento_id)
     # Estabelece os parâmetros que o método create irá receber
     @produto = Produto.new produto_params
     # Cria um novo produto com os parâmetros recebidos
@@ -28,6 +28,26 @@ class ProdutosController < ApplicationController
     # 3. Redireciona para a página raiz
   end
 
+  def edit
+    id = params[:id]
+    @produto = Produto.find id
+    @departamentos = Departamento.all # Busca todos os departamentos
+    render :new
+  end
+
+  def update
+    @produto = Produto.find params[:id]
+    @departamentos = Departamento.all
+    produto_params = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade, :departamento_id)
+    if @produto.update produto_params
+      flash[:notice] = "Produto atualizado com sucesso"
+      redirect_to root_path
+    else
+      render :new
+    end
+
+  end
+
   def destroy
     id = params[:id]
     Produto.destroy id
@@ -43,4 +63,9 @@ class ProdutosController < ApplicationController
     @nome = params[:id]
     @produtos = Produto.where "nome like ?", "%#{@nome}%"
   end
+
+  # private
+  # def produto_params
+  #   params.require(:produto).permit(:nome, :descricao, :preco, :quantidade, :departamento_id)
+  # end
 end
