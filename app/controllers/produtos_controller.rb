@@ -21,7 +21,7 @@ class ProdutosController < ApplicationController
       flash[:notice] = "Produto salvo com sucesso" # Adiciona uma mensagem de sucesso
       redirect_to root_path
     else
-      renderiza
+      renderiza :new
     end
     # Redireciona para a página raiz
 
@@ -33,7 +33,7 @@ class ProdutosController < ApplicationController
 
   def edit
     set_produto
-    renderiza
+    renderiza :edit
   end
 
   def update
@@ -43,7 +43,7 @@ class ProdutosController < ApplicationController
       flash[:notice] = "Produto atualizado com sucesso"
       redirect_to root_path
     else
-      renderiza
+      renderiza :edit
     end
 
   end
@@ -72,9 +72,9 @@ class ProdutosController < ApplicationController
     @produto = Produto.find(params[:id])
   end
 
-  def renderiza
+  def renderiza(view)
     @departamentos = Departamento.all
-      render :new
+    render view
   end
 
 end
