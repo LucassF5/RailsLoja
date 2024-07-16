@@ -1,4 +1,8 @@
 class ProdutosController < ApplicationController
+
+  before_action :set_produto, only: [:edit, :update, :destroy]
+  # before_action verifica se o produto existe antes de executar os métodos edit, update e destroy
+
   def index
     @produtos = Produto.all.order :nome
     @produto_com_desconto = Produto.order(:preco).limit 2
@@ -10,7 +14,6 @@ class ProdutosController < ApplicationController
   end
 
   def create
-    produto_params = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade, :departamento_id)
     # Estabelece os parâmetros que o método create irá receber
     @produto = Produto.new produto_params
     # Cria um novo produto com os parâmetros recebidos
@@ -18,7 +21,7 @@ class ProdutosController < ApplicationController
       flash[:notice] = "Produto salvo com sucesso" # Adiciona uma mensagem de sucesso
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      renderiza
     end
     # Redireciona para a página raiz
 
@@ -29,28 +32,24 @@ class ProdutosController < ApplicationController
   end
 
   def edit
-    id = params[:id]
-    @produto = Produto.find id
-    @departamentos = Departamento.all # Busca todos os departamentos
-    render :new
+    set_produto
+    renderiza
   end
 
   def update
-    @produto = Produto.find params[:id]
+    set_produto
     @departamentos = Departamento.all
-    produto_params = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade, :departamento_id)
     if @produto.update produto_params
       flash[:notice] = "Produto atualizado com sucesso"
       redirect_to root_path
     else
-      render :new
+      renderiza
     end
 
   end
 
   def destroy
-    id = params[:id]
-    Produto.destroy id
+    @produto.destroy
     redirect_to root_path
 
     # Na ordem, o método destroy faz:
@@ -60,12 +59,22 @@ class ProdutosController < ApplicationController
   end
 
   def busca
-    @nome = params[:id]
+    @nome = params[:nome]
     @produtos = Produto.where "nome like ?", "%#{@nome}%"
   end
 
-  # private
-  # def produto_params
-  #   params.require(:produto).permit(:nome, :descricao, :preco, :quantidade, :departamento_id)
-  # end
+  private
+  def produto_params
+    params.require(:produto).permit(:nome, :descricao, :preco, :quantidade, :departamento_id)
+  end
+
+  def set_produto
+    @produto = Produto.find(params[:id])
+  end
+
+  def renderiza
+    @departamentos = Departamento.all
+      render :new
+  end
+
 end
