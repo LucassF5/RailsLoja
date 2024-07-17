@@ -3,6 +3,7 @@ class Produto < ApplicationRecord
 
   validates :nome, presence: true
   validates :descricao, presence: true #, length: {minimum: 10}
+  validates :departamento, presence: true
   validates :preco, presence: true, numericality: {greater_than: 0}
   validates :quantidade, presence: true
 end
