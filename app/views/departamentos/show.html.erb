@@ -1,6 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @departamento %>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>Nome</td>
+            <td>Descrição</td>
+            <td>Preço</td>
+            <td>Quantidade</td>
+            <td>Departamento</td>
+            <td colspan=2></td>
+        </tr>
+    </thead>
+    <tbody>
+        <%= render @produtos_por_departamento %>
+    </tbody>
+</table>
 
 <div>
   <%= link_to "Edit this departamento", edit_departamento_path(@departamento) %> |
